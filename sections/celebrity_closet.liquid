@@ -1,0 +1,46 @@
+<div class="col-items-3">
+  {%  for block in section.blocks %}
+    <a href='{{ block.settings.img_closet_url }}'><img src="{{ block.settings.image_closet | img_url: 'large' }}" loading="eager" /></a>
+    {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Image Closet",
+  "class": "image_closet",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_closet",
+      "label": "image_closet"
+    },{
+      "type": "url",
+      "id": "img_closet_url",
+      "label": "img_closet_url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_picker",
+      "name": "Pick An Image Please",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_closet",
+          "label": "image picker"
+        },
+        {
+      "type": "url",
+      "id": "img_closet_url",
+      "label": "img_closet_url"
+    }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

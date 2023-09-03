@@ -1,0 +1,11 @@
+[environments.staging]
+theme = "136877539551"
+store = "ramiz-bhoja"
+ignore = ["config/settings_data.json", "templates/**/*.json"]
+
+[environments.live]
+theme = "128718405855"
+store = "ramiz-bhoja"
+nodelete = true
+allow-live = true
+ignore = ["config/settings_data.json", "templates/**/*.json"]
