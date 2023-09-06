@@ -1,13 +1,70 @@
 {%- if section.settings.enable_feature_icons_bar -%}
 <div class="FeatureIcons FeatureIcons-3">
     {%- for block in section.blocks -%}
+        {% assign image_url = block.settings.image | img_url: '200x200' %}
         <div class="featureIcon">
-            <img class="icon-product" src="{{ block.settings.image }}" alt="{{ block.settings.image.alt | escape }}">
+            <img class="icon-product" src="{{ image_url }}" alt="{{ block.settings.image.alt | escape }}">
             <span>{{ block.settings.title }}</span>
         </div>
     {%- endfor -%}
 </div>
 {%- endif -%}
+
+{% stylesheet %}
+.FeatureIcons.FeatureIcons-3 {
+  grid-template-columns: repeat(3,1fr);
+}
+
+.FeatureIcons.FeatureIcons-3 {
+    border-top: 0;
+    margin: 0;
+}
+
+.featureIcon {
+    border-right: 1px solid;
+}
+
+.FeatureIcons.FeatureIcons-3 .featureIcon:last-child {
+    border-right: 0;
+}
+
+.FeatureIcons {
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 10px;
+    padding: 12px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 15px;
+    align-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.featureIcon span {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333;
+    line-height: 15px;
+    letter-spacing: 1px;
+}
+  
+  .featureIcon img {
+    max-width: 50px
+  }
+
+.featureIcon svg {
+    fill: #333;
+    height: 24px;
+    width: auto;
+    margin: 0 0 4px 0;
+}
+
+{% endstylesheet %}
+
+
 
 {% schema %}
 {
@@ -57,6 +114,6 @@
         }
       ]
     }
-  ],
+  ]
 }
 {% endschema %}
