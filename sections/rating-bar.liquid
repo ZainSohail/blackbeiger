@@ -1,11 +1,23 @@
 {%- if section.settings.enable_rating_bar -%}
   {%- unless section.settings.home_page_only and template != 'index' -%}
     <section id="section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="announcement-bar">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <div class="AnnouncementBar">
         <div class="AnnouncementBar__Wrapper">
-          <p class="AnnouncementBar__Content Heading">
-            {{ section.settings.rating_text | escape }}
-          </p>
+          <div class="stars-wrapper">
+            <div class="stars">
+              {% for i in (1..5) %}
+                {% if section.settings.rating < i %}
+                  <span class="fa fa-star"></span>
+                {% else %}
+                  <span class="fa fa-star checked"></span>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <p class="AnnouncementBar__Content Heading">
+              {{ section.settings.rating_text | escape }}
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -22,6 +34,26 @@
     </script>
   {%- endunless -%}
 {%- endif -%}
+
+{% stylesheet %}
+
+.stars {
+  display: flex;
+  margin-right: 5px;
+}
+
+.checked {
+  color: orange
+}
+
+.stars-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center
+}
+
+{% endstylesheet %}
+
 
 {% schema %}
 {
@@ -62,7 +94,7 @@
       "id": "rating",
       "min": 0,
       "max": 5,
-      "step": 0.5,
+      "step": 1,
       "label": "Rating",
       "default": 4
     }

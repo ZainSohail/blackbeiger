@@ -1,0 +1,62 @@
+{%- if section.settings.enable_feature_icons_bar -%}
+<div class="FeatureIcons FeatureIcons-3">
+    {%- for block in section.blocks -%}
+        <div class="featureIcon">
+            <img class="icon-product" src="{{ block.settings.image }}" alt="{{ block.settings.image.alt | escape }}">
+            <span>{{ block.settings.title }}</span>
+        </div>
+    {%- endfor -%}
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Header Feature Icons",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_feature_icons_bar",
+      "label": "Enable Feature Icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "home_page_only",
+      "label": "Home page only",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "100 x 100 jpg recommended"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Icon title"
+        }
+      ]
+    }
+  ],
+}
+{% endschema %}
