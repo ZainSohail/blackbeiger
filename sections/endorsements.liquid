@@ -1,0 +1,80 @@
+{%- if section.settings.enable_endorsements_bar -%}
+  <h3 class="SectionHeader__Heading Heading u-h3  SectionHeader--center">{{ section.settings.title }}</h3>
+  <div class="endorsements-bar" style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }}">
+      {%- for block in section.blocks -%}
+          <div class="endorsements">{{ block.settings.title }}</div>
+      {%- endfor -%}
+  </div>
+{%- endif -%}
+
+
+{% stylesheet %}
+  .endorsements-bar {
+      display: inline-flex;
+      padding: 25px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+  }
+
+  .endorsements-bar .endorsements {
+      text-transform: uppercase;
+      margin: 15px;
+      font-weight: 800;
+      font-size: 25px;
+      opacity: 0.6;
+      transition: 0.7ms;
+      font-family: Roboto;
+  }
+
+  .endorsements-bar .endorsements:hover {
+      opacity: 1;
+      
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Endorsements",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_endorsements_bar",
+      "label": "Enable Endorsement Bar",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#EFEFEF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "OUR SHOES ARE ENDORSED BY"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "endorsee",
+      "name": "Endorsee",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
