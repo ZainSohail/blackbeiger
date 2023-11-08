@@ -1,0 +1,104 @@
+{%- if section.settings.enable_customer_engagement -%}
+  <div class="Section Section--spacingNormal">
+    <h3 class="SectionHeader__Heading Heading u-h3  SectionHeader--center">{{ section.settings.title }}</h3>
+    <script type="text/javascript">
+      console.log( {{ product.metafields.customer_enagements | json }} )
+    </script>
+    <div class="customer-engagements" style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }}">
+        {%- for engagement in product.metafields.customer_enagements.engagement.value -%}
+            <div class="customer-engagement">
+              <div class="image">
+                {{ engagement.image | image_url: height: 600 | image_tag }}
+              </div>
+
+              <div class="content">
+                <p>{{ engagement.account }}<p>
+                <p>{{ engagement.name }}</p>
+              </div>
+            </div>
+        {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+
+<style>
+  .customer-engagements {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 0 50px;
+  }
+
+  .customer-engagements .customer-engagement {
+      flex-basis: 25%
+  }
+
+  .customer-engagements .customer-engagement img {
+     width: 100%;
+    height: 600px;
+    object-fit: cover;
+    margin: auto;
+    display: block;
+    border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .content {
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 15px;
+  }
+
+  .content p {
+      margin-bottom: 0;
+  }
+
+  @media only screen and (max-width: 620px) {
+        .customer-engagements .customer-engagement {
+            flex-basis: 50%;
+        }
+
+        .customer-engagements {
+            gap: 10px;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0 20px;
+        }
+
+        .customer-engagements .customer-engagement img {
+            height: 300px;
+        }
+    }
+
+</style>
+
+{% schema %}
+{
+  "name": "Customer Engagement",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_customer_engagement",
+      "label": "Customer Engagement",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#EFEFEF"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Styled by you"
+    }
+  ]
+}
+{% endschema %}

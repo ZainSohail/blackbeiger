@@ -1,9 +1,11 @@
 {%- if section.settings.enable_endorsements_bar -%}
-  <h3 class="SectionHeader__Heading Heading u-h3  SectionHeader--center">{{ section.settings.title }}</h3>
-  <div class="endorsements-bar" style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }}">
-      {%- for block in section.blocks -%}
-          <div class="endorsements">{{ block.settings.title }}</div>
-      {%- endfor -%}
+  <div class="Section Section--spacingNormal">
+    <h3 class="SectionHeader__Heading Heading u-h3  SectionHeader--center">{{ section.settings.title }}</h3>
+    <div class="endorsements-bar" style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }}">
+        {%- for block in section.blocks -%}
+            <div class="endorsements">{{ block.settings.title }}</div>
+        {%- endfor -%}
+    </div>
   </div>
 {%- endif -%}
 

@@ -222,12 +222,13 @@
           <a target="_blank" class="whatsapp-order-btn" href="https://api.whatsapp.com/send/?phone=923343466538&text=Hey,%20I%20want%20to%20order%20this:%20https://blackbeiger.com{{ product.url}}"> Order on WhatsApp </a>
           <p class="SectionHeader--center" style="margin-top: 5px;">Ships in 1 Day</p>
 
-
           {%- if section.settings.description_below_add_to_cart -%}
             <div class="ProductMeta__Description Rte">
               {{ product.metafields.custom.short_description | metafield_tag }}
             </div>
           {%- endif -%}
+          
+          {%- include 'product-tabs-v2' -%}
 
           {%- if product_aside != blank and image_count > 0 -%}
             <div class="Product__QuickNav hidden-pocket">
@@ -485,6 +486,36 @@ This is the root container for the zoom functionality. Must not be removed, as o
       "label": "Show thumbnails",
       "info": "Only applicable on large screens",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Tabs v2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tabs_v2",
+      "label": "Show Tabs v2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_2_title",
+      "label": "Tab 2 Title"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_2_content",
+      "label": "Tab 2 Content"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_title",
+      "label": "Tab 3 Title"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_3_content",
+      "label": "Tab 3 Content"
     },
     {
       "type": "header",
