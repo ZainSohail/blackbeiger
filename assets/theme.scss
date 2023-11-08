@@ -9931,6 +9931,14 @@ $vertical-spacing-two-products-per-row  : 0px;
   text-align: left;
 }
 
+.ProductMeta__Description li {
+  padding-bottom: 0;
+}
+
+.ProductMeta_ShortDesc p {
+  margin-bottom: 10px;
+}
+
 /* When the description is set after the product form, layout changes a bit */
 .ProductForm ~ .ProductMeta__Description {
   border-top: none;

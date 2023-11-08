@@ -9,6 +9,42 @@
   </div>
 {%- endif -%}
 
+<style type="text/css">
+  .endorsements-bar {
+      display: inline-flex;
+      padding: 25px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+  }
+
+  .endorsements-bar .endorsements {
+      text-transform: uppercase;
+      margin: 15px;
+      font-weight: 800;
+      font-size: 25px;
+      opacity: 0.6;
+      transition: 0.7ms;
+      font-family: Roboto;
+  }
+
+  .endorsements-bar .endorsements:hover {
+      opacity: 1;
+  }
+
+  @media only screen and (max-width: 980px) {
+      .endorsements-bar {
+        display: flex;
+        width: 100%;
+        flex-flow: wrap;
+      }
+
+      .endorsements-bar .endorsements:nth-child(3) {
+        width: 100%;
+        text-align: center;
+      }
+  }
+</style>
 
 {% stylesheet %}
   .endorsements-bar {

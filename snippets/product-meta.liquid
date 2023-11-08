@@ -29,6 +29,12 @@
     {%- endif -%}
   </div>
 
+  {%- if section.settings.description_below_add_to_cart -%}
+    <div class="ProductMeta__Description Rte">
+      {{ product.metafields.custom.short_description | metafield_tag }}
+    </div>
+  {%- endif -%}
+
   {%- if show_description and section.settings.description_below_add_to_cart == false and product.description != blank -%}
     <div class="ProductMeta__Description Rte">
       {{ product.description }}
