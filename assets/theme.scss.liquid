@@ -11863,6 +11863,56 @@ label.swatch-anchor.swatch-other.globo-style--button.globo-detail-button-style-r
     border-color: #4ECC5C;
 }
 
+.Checkmarked_List ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 20px;
+}
+
+.Checkmarked_List ul li:before {
+    content: "\f00c";
+    font-family: FontAwesome;
+    position: absolute;
+    left: 0;
+}
+
+.related-product-sizes {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y:hidden;
+    white-space: nowrap;
+}
+
+.related-product-size {
+    display: inline-block;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 0 10px 15px 0px;
+    width: 130px;
+    height: 140px;
+    vertical-align: top;
+    margin-bottom: 15px;
+}
+
+.related-product-size img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin: auto;
+    display: block;
+    margin-bottom: 5px
+}
+
+.related-product-size p {
+    word-wrap: break-word;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 @media only screen and (max-width: 720px) {
   .Header__FlexItem.Header__FlexItem--fill {
     display: flex
