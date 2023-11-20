@@ -1,77 +1,89 @@
-{%- if section.settings.enable_customer_engagement -%}
-  <div class="Section Section--spacingNormal">
-    <h3 class="SectionHeader__Heading Heading u-h3  SectionHeader--center">{{ section.settings.title }}</h3>
-    <script type="text/javascript">
-      console.log( {{ product.metafields.customer_enagements | json }} )
-    </script>
-    <div class="customer-engagements" style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }}">
-        {%- for engagement in product.metafields.customer_enagements.engagement.value -%}
-            <div class="customer-engagement">
-              <div class="image">
-                {{ engagement.image | image_url: height: 600 | image_tag }}
-              </div>
+{%- capture flickity_options -%}
+{
+    "prevNextButtons": false,
+    "setGallerySize": true,
+    "adaptiveHeight": true,
+    "wrapAround": true,
+    "dragThreshold": 15,
+    "pauseAutoPlayOnHover": false,
+    "autoPlay": 5000,
+    "pageDots": true,
+    "cellAlign": "left",
+    "contain": true,
+    "draggable": ">1"
+}
+{%- endcapture -%}
 
-              <div class="content">
-                <p>{{ engagement.account }}<p>
-                <p>{{ engagement.name }}</p>
-              </div>
-            </div>
-        {%- endfor -%}
+{%- if section.settings.enable_customer_engagement -%}
+<div class="Section Section--spacingNormal">
+    <h3 class="SectionHeader__Heading Heading u-h3  SectionHeader--center">{{ section.settings.title }}</h3>
+    <div class="customer-engagements" style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }}">
+        <div class="Carousel" data-flickity='{{ flickity_options }}'>
+            {%- for engagement in product.metafields.customer_enagements.engagement.value -%}
+                <div class="Carousel__Cell {% if forloop.first %}is-selected{% endif %}" {% if forloop.first %}style="visibility: visible"{% endif %} data-slide-index="{{ forloop.index0 }}">
+                    <div class="customer-engagement">
+                        <div class="image">
+                            {{ engagement.image | image_url: height: 600 | image_tag }}
+                        </div>
+                        <div class="content">
+                            <p>{{ engagement.account }}</p>
+                            <p>{{ engagement.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
     </div>
-  </div>
+</div>
 {%- endif -%}
 
 
 <style>
-  .customer-engagements {
-    display: inline-flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    padding: 0 50px;
-  }
+    .customer-engagements {
+        width: 100%;
+        padding: 35px 50px;
+    }
 
-  .customer-engagements .customer-engagement {
-      flex-basis: 25%
-  }
+    .customer-engagement {
+        padding: 0 25px;
+    }
 
-  .customer-engagements .customer-engagement img {
-     width: 100%;
-    height: 600px;
-    object-fit: cover;
-    margin: auto;
-    display: block;
-    border-radius: 14px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
+    .customer-engagements .customer-engagement img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        margin: auto;
+        display: block;
+        border-radius: 14px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
 
-  .content {
-      text-align: center;
-      font-weight: 600;
-      font-size: 18px;
-      padding: 15px;
-  }
+    .content {
+        text-align: center;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 15px;
+    }
 
-  .content p {
-      margin-bottom: 0;
-  }
+    .customer-engagements .Carousel__Cell {
+        width: 25%;
+    }
 
-  @media only screen and (max-width: 620px) {
-        .customer-engagements .customer-engagement {
-            flex-basis: 50%;
+    .content p {
+        margin-bottom: 0;
+    }
+
+    @media only screen and (max-width: 620px) {
+        .customer-engagements .Carousel__Cell {
+            width: 100%;
         }
 
         .customer-engagements {
-            gap: 10px;
-            padding: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             padding: 0 20px;
         }
 
         .customer-engagements .customer-engagement img {
-            height: 300px;
+            height: 100%;
         }
     }
 
@@ -80,6 +92,7 @@
 {% schema %}
 {
   "name": "Customer Engagement",
+  "class": "shopify-section--slideshow",
   "settings": [
     {
       "type": "checkbox",
