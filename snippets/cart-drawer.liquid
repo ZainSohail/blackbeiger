@@ -65,11 +65,27 @@
           {%- endif -%}
         {%- endif -%}
 
-        <button type="submit" name="checkout" class="Cart__Checkout Button Button--primary Button--full">
+        {% assign total_saving = 0 %}
+        {% for item in cart.items %}
+          {% if item.variant.compare_at_price > item.variant.price %}
+            {% capture saving %}{{ item.variant.compare_at_price | minus: item.variant.price | times: item.quantity}}{% endcapture %}
+            {% assign total_saving = saving | plus: total_saving %}
+          {% endif %}
+        {% endfor %}
+
+        {% if total_saving > 0 %}
+          <div class="you-saved">
+            You saved: {{ total_saving | money }}
+          </div>
+        {% endif %}
+
+        <button type="submit" name="checkout" class="Cart__Checkout Button Button--primary Button--full" style="    margin-top: 0;">
           <span>{{- 'cart.general.checkout' | t -}}</span>
           <span class="Button__SeparatorDot"></span>
           <span data-money-convertible>{{ cart.total_price | money_without_trailing_zeros }}</span>
         </button>
+
+        
 
         {%- if settings.cart_enable_notes -%}
           <div class="Cart__OffscreenNoteContainer" aria-hidden="true">

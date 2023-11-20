@@ -77,6 +77,11 @@
         {%- endfor -%}
 
         <div class="Form__Item">
+            <input type="text" class="Form__Input" name="contact[product_link]" aria-label="Product Link (Optional)" placeholder="Product Link (Optional)">
+            <label class="Form__FloatingLabel">Product Link (Optional)</label>
+          </div>
+
+        <div class="Form__Item">
           <textarea name="contact[body]" cols="30" rows="10" class="Form__Textarea" aria-label="{{ 'contact.form.message' | t }}" placeholder="{{ 'contact.form.message' | t }}" required></textarea>
           <label class="Form__FloatingLabel">{{ 'contact.form.message' | t }}</label>
         </div>
