@@ -197,6 +197,17 @@ for size, we use it to display a size chart (if applicable)
       <input type="hidden" name="id" data-sku="{{ selected_variant.sku }}" value="{{ selected_variant.id }}">
     {%- endunless -%}
 
+    {%- if section.settings.social_icon_fb -%}
+      <div class="social-icons">
+          <p><span style="color: #4267B2;" class="fa fa-thumbs-up"></span> {{ section.settings.social_icon_fb_text }}</p>
+            {%- if section.settings.social_icon_insta -%}
+                <p><span style="color: #E1306C;" class="fa fa fa-heart"></span> {{ section.settings.social_icon_insta_text }}</p>
+            {%- endif -%}
+      </div>
+    {%- endif -%}
+
+   
+
     {%- if section.settings.show_quantity_selector -%}
       <div class="ProductForm__QuantitySelector">
         <div class="QuantitySelector QuantitySelector--large">

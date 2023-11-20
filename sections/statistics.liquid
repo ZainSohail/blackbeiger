@@ -1,0 +1,128 @@
+<section class="Section" id="section-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="FeatureIcons FeatureIcons-3 stats">
+      {%- for block in section.blocks -%}
+          {% assign image_url = block.settings.image | img_url: '200x200' %}
+          <div class="featureIcon">
+            <span class="fa {{ block.settings.icon }}"></span>
+            <p>{{ block.settings.stat_text }}</p>
+          </div>
+      {%- endfor -%}
+  </div>
+</section>
+
+<style>
+
+  #section-{{ section.id }} {
+    background: {{ section.settings.background }};
+    padding: 35px 0;
+  }
+
+  .FeatureIcons-3.stats {
+    border: 0;
+  }
+
+  .FeatureIcons-3.stats p {
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  .FeatureIcons-3.stats .featureIcon span {
+    color: {{ section.settings.icon_color }};
+    font-size: 35px;
+    line-height: 35px;
+    margin-bottom: 10px;
+  }
+
+  .FeatureIcons-3.stats .featureIcon {
+    border: 0;
+  }
+
+  @media only screen and (max-width: 780px) {
+    .FeatureIcons-3.stats p {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+    .FeatureIcons-3.stats .featureIcon span {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+ 
+</style>
+
+  {% schema %}
+  {
+    "name": "Statistics",
+    "class": "stats_class",
+    "settings": [
+      {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#ffffff"
+      },
+      {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#eee"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "stats",
+        "name": "Stat",
+        "settings": [
+          {
+            "type": "select",
+            "id": "icon",
+            "label": "Icon",
+            "options": [
+              {"value": "fa-adjust", "label": "Adjust"},
+              {"value": "fa-anchor", "label": "Anchor"},
+              {"value": "fa-archive", "label": "Archive"},
+              {"value": "fa-area-chart", "label": "Area Chart"},
+              {"value": "fa-battery-full", "label": "Battery Full"},
+              {"value": "fa-beer", "label": "Beer"},
+              {"value": "fa-bug", "label": "Bug"},
+              {"value": "fa-check", "label": "Check"},
+              {"value": "fa-code", "label": "Code"},
+              {"value": "fa-coffee", "label": "Coffee"},
+              {"value": "fa-desktop", "label": "Desktop"},
+              {"value": "fa-envelope", "label": "Envelope"},
+              {"value": "fa-flag", "label": "Flag"},
+              {"value": "fa-gift", "label": "Gift"},
+              {"value": "fa-heart", "label": "Heart"},
+              {"value": "fa-info-circle", "label": "Info Circle"},
+              {"value": "fa-key", "label": "Key"},
+              {"value": "fa-lightbulb-o", "label": "Lightbulb"},
+              {"value": "fa-music", "label": "Music"},
+              {"value": "fa-paint-brush", "label": "Paint Brush"},
+              {"value": "fa-question-circle", "label": "Question Circle"},
+              {"value": "fa-rocket", "label": "Rocket"},
+              {"value": "fa-star", "label": "Star"},
+              {"value": "fa-thumbs-up", "label": "Thumbs Up"},
+              {"value": "fa-user", "label": "User"}
+            ],
+            "default": "fa-star"
+          },
+          {
+            "id": "stat_text",
+            "type": "text",
+            "label": "Total Customers",
+            "default": "60,000+ CUSTOMERS"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Statistics",
+        "category": "Custom"
+      }
+    ]
+  }
+
+{% endschema %}
+
